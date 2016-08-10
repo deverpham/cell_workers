@@ -92,7 +92,7 @@ class PokemonCatchWorker(BaseTask):
         # log encounter
         self.emit_event(
             'pokemon_appeared',
-            formatted='A wild {pokemon} appeared! [CP {cp}] [Potential {iv}] [A/D/S {iv_display}]',
+            formatted='Xuat hien {pokemon} ! [CP {cp}] [Potential {iv}] [A/D/S {iv_display}]',
             data={
                 'pokemon': pokemon.name,
                 'cp': pokemon.cp,
@@ -107,7 +107,7 @@ class PokemonCatchWorker(BaseTask):
         # check for VIP pokemon
         is_vip = self._is_vip_pokemon(pokemon)
         if is_vip:
-            self.emit_event('vip_pokemon', formatted='This is a VIP pokemon. Catch!!!')
+            self.emit_event('vip_pokemon', formatted=' VIP pokemon. Bat!!!')
 
         # catch that pokemon!
         encounter_id = self.pokemon['encounter_id']
@@ -219,7 +219,7 @@ class PokemonCatchWorker(BaseTask):
         self.emit_event(
             'pokemon_catch_rate',
             level='debug',
-            formatted='Catch rate of {catch_rate} with {ball_name} is low. Throwing {berry_name} (have {berry_count})',
+            formatted='Ti le thanh cong {catch_rate} voi {ball_name} thap. Nem {berry_name} (co {berry_count})',
             data={
                 'catch_rate': self._pct(catch_rate_by_ball[current_ball]),
                 'ball_name': self.item_list[str(current_ball)],
@@ -243,7 +243,7 @@ class PokemonCatchWorker(BaseTask):
                     new_catch_rate_by_ball.append(rate * responses['USE_ITEM_CAPTURE']['item_capture_mult'])
                 self.emit_event(
                     'threw_berry',
-                    formatted="Threw a {berry_name}! Catch rate with {ball_name} is now: {new_catch_rate}",
+                    formatted="Nem  {berry_name}! Ti le thanh cong {ball_name} : {new_catch_rate}",
                     data={
                         'berry_name': self.item_list[str(berry_id)],
                         'ball_name': self.item_list[str(current_ball)],
@@ -257,7 +257,7 @@ class PokemonCatchWorker(BaseTask):
                 self.emit_event(
                     'softban',
                     level='warning',
-                    formatted='Failed to use berry. You may be softbanned.'
+                    formatted='Failed to use berry'
                 )
 
         # unknown status code
@@ -329,7 +329,7 @@ class PokemonCatchWorker(BaseTask):
             items_stock[current_ball] -= 1
             self.emit_event(
                 'threw_pokeball',
-                formatted='Used {ball_name}, with chance {success_percentage} ({count_left} left)',
+                formatted='su dung {ball_name}, Ti le {success_percentage}',
                 data={
                     'ball_name': self.item_list[str(current_ball)],
                     'success_percentage': self._pct(catch_rate_by_ball[current_ball]),
@@ -359,7 +359,7 @@ class PokemonCatchWorker(BaseTask):
             if catch_pokemon_status == CATCH_STATUS_FAILED:
                 self.emit_event(
                     'pokemon_capture_failed',
-                    formatted='{pokemon} capture failed.. trying again!',
+                    formatted='Bat {pokemon} Khong Duoc. Thu lai',
                     data={'pokemon': pokemon.name}
                 )
                 sleep(2)
@@ -369,7 +369,7 @@ class PokemonCatchWorker(BaseTask):
             elif catch_pokemon_status == CATCH_STATUS_VANISHED:
                 self.emit_event(
                     'pokemon_vanished',
-                    formatted='{pokemon} vanished!',
+                    formatted='{pokemon} Chay mat!',
                     data={'pokemon': pokemon.name}
                 )
                 if self._pct(catch_rate_by_ball[current_ball]) == 100:
@@ -380,7 +380,7 @@ class PokemonCatchWorker(BaseTask):
                 self.bot.metrics.captured_pokemon(pokemon.name, pokemon.cp, pokemon.iv_display, pokemon.iv)
                 self.emit_event(
                     'pokemon_caught',
-                    formatted='Captured {pokemon}! [CP {cp}] [Potential {iv}] [{iv_display}] [+{exp} exp]',
+                    formatted='Bat Duoc {pokemon}! [CP {cp}] [Potential {iv}] [{iv_display}] [+{exp} exp]',
                     data={
                         'pokemon': pokemon.name,
                         'cp': pokemon.cp,
@@ -395,7 +395,7 @@ class PokemonCatchWorker(BaseTask):
                 candy.add(3)
                 self.emit_event(
                     'gained_candy',
-                    formatted='You now have {quantity} {type} candy!',
+                    formatted='Ban dang co {quantity} {type} candy!',
                     data = {
                         'quantity': candy.quantity,
                         'type': candy.type,
@@ -423,12 +423,12 @@ class PokemonCatchWorker(BaseTask):
         if catch_pokemon_status == 1:
             self.emit_event(
                 'pokemon_evolved',
-                formatted='{pokemon} evolved!',
+                formatted='{pokemon} Tien Hoa Thanh Cong!',
                 data={'pokemon': pokemon.name}
             )
         else:
             self.emit_event(
                 'pokemon_evolve_fail',
-                formatted='Failed to evolve {pokemon}!',
+                formatted='Tien Hoa That Bai {pokemon}!',
                 data={'pokemon': pokemon.name}
             )

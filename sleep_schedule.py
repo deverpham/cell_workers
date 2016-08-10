@@ -95,7 +95,7 @@ class SleepSchedule(BaseTask):
         sleep_to_go = self._next_duration
         self.emit_event(
             'bot_sleep',
-            formatted="Sleeping for {time_in_seconds}",
+            formatted="Nghi  khoang {time_in_seconds}",
             data={
                 'time_in_seconds': sleep_to_go
             }

@@ -40,7 +40,7 @@ class FollowCluster(BaseTask):
             if not self.is_at_destination:
                 msg = log_lure_avail_str + (
                     "Move to destiny {num_points}. {forts} "
-                    "pokestops will be in range of {radius}. Walking {distance}m."
+                    "pokestops nam trong khoang {radius}. Walking {distance}m."
                 )
                 self.emit_event(
                     'found_cluster',
@@ -72,7 +72,7 @@ class FollowCluster(BaseTask):
             elif not self.announced:
                 self.emit_event(
                     'arrived_at_cluster',
-                    formatted="Arrived at cluster. {forts} are in a range of {radius}m radius.",
+                    formatted="den  {forts} nam trong khoang {radius}m radius.",
                     data={
                         'forts': str(cnt),
                         'radius': self.radius

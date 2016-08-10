@@ -22,7 +22,7 @@ class MoveToFort(BaseTask):
         if not has_space_for_loot:
             self.emit_event(
                 'inventory_full',
-                formatted="Inventory is full. You might want to change your config to recycle more items if this message appears consistently."
+                formatted="Full.xoa bot item"
             )
         return has_space_for_loot or self.ignore_item_count or self.bot.softban
 
@@ -63,13 +63,13 @@ class MoveToFort(BaseTask):
                 fort_event_data.update(lure_distance=format_dist(self.lure_distance, unit))
                 self.emit_event(
                     'moving_to_lured_fort',
-                    formatted="Moving towards pokestop {fort_name} - {distance} (attraction of lure {lure_distance})",
+                    formatted="Di chuyen toi pokestop {fort_name} - {distance}",
                     data=fort_event_data
                 )
             else:
                 self.emit_event(
                     'moving_to_fort',
-                    formatted="Moving towards pokestop {fort_name} - {distance}",
+                    formatted="Di chuyen toi pokestop {fort_name} - {distance}",
                     data=fort_event_data
                 )
 

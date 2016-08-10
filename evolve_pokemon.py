@@ -55,7 +55,7 @@ class EvolvePokemon(BaseTask):
                 if result is 1:  # Request success
                     self.emit_event(
                         'used_lucky_egg',
-                        formatted='Used lucky egg ({amount_left} left).',
+                        formatted='Dung luck egg ({amount_left} ).',
                         data={
                              'amount_left': lucky_egg_count - 1
                         }
@@ -65,14 +65,14 @@ class EvolvePokemon(BaseTask):
                     self.emit_event(
                         'lucky_egg_error',
                         level='error',
-                        formatted='Failed to use lucky egg!'
+                        formatted='dung lucky egg! that bai'
                     )
                     return False
         else:
             # Skipping evolve so they aren't wasted
             self.emit_event(
                 'skip_evolve',
-                formatted='Skipping evolve because has no lucky egg.'
+                formatted='Khong co lucky egg de tien hoa'
             )
             return False
 
@@ -102,7 +102,7 @@ class EvolvePokemon(BaseTask):
         if response_dict.get('responses', {}).get('EVOLVE_POKEMON', {}).get('result', 0) == 1:
             self.emit_event(
                 'pokemon_evolved',
-                formatted="Successfully evolved {pokemon} with CP {cp} and IV {iv}!",
+                formatted="Tien hoa thanh cong {pokemon} with CP {cp} and IV {iv}!",
                 data={
                     'pokemon': pokemon.name,
                     'iv': pokemon.iv,

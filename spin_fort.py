@@ -22,7 +22,7 @@ class SpinFort(BaseTask):
         if not self.bot.has_space_for_loot():
             self.emit_event(
                 'inventory_full',
-                formatted="Inventory is full. You might want to change your config to recycle more items if this message appears consistently."
+                formatted="FULL.Xoa Bot Item"
             )
         return self.ignore_item_count or self.bot.has_space_for_loot()
 

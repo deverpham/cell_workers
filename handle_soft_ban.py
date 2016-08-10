@@ -38,14 +38,14 @@ class HandleSoftBan(BaseTask):
             spins = randint(50,60)
             self.emit_event(
                 'softban_fix',
-                formatted='Fixing softban.'
+                formatted='Fix khong bi ban nick'
             )
             for i in xrange(spins):
                 self.spin_fort(forts[0])
             self.bot.softban = False
             self.emit_event(
                 'softban_fix_done',
-                formatted='Softban should be fixed'
+                formatted='Fix ban nick thanh cong'
             )
 
     def spin_fort(self, fort):

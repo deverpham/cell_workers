@@ -34,7 +34,7 @@ class IncubateEggs(BaseTask):
             else:
                 self.emit_event(
                     'next_egg_incubates',
-                    formatted='Next egg incubates in {distance_in_km:.2f} km',
+                    formatted='Trung se no trong khoang {distance_in_km:.2f} km',
                     data={
                         'distance_in_km': km_left
                     }
@@ -57,7 +57,7 @@ class IncubateEggs(BaseTask):
                 self.emit_event(
                     'incubate_try',
                     level='debug',
-                    formatted="Attempting to apply incubator {incubator_id} to egg {egg_id}",
+                    formatted="Su dung incubator {incubator_id} to egg {egg_id}",
                     data={
                         'incubator_id': incubator['id'],
                         'egg_id': egg['id']
@@ -193,7 +193,7 @@ class IncubateEggs(BaseTask):
             )
             return
         for i in range(len(pokemon_data)):
-            msg = "Egg hatched with a {pokemon} (CP {cp} - IV {iv}), {exp} exp, {stardust} stardust and {candy} candies."
+            msg = "Trung no ra {pokemon} (CP {cp} - IV {iv}), {exp} exp, {stardust} stardust and {candy} candies."
             self.emit_event(
                 'egg_hatched',
                 formatted=msg,

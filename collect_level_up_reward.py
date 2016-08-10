@@ -22,7 +22,7 @@ class CollectLevelUpReward(BaseTask):
         elif self.current_level > self.previous_level:
             self.emit_event(
                 'level_up',
-                formatted='Level up from {previous_level} to {current_level}',
+                formatted='Len Level {current_level}',
                 data={
                     'previous_level': self.previous_level,
                     'current_level': self.current_level
@@ -48,7 +48,7 @@ class CollectLevelUpReward(BaseTask):
 
             self.emit_event(
                 'level_up_reward',
-                formatted='Received level up reward: {items}',
+                formatted='Nhan phan thuong len level: {items}',
                 data={
                     'items': data
                 }
